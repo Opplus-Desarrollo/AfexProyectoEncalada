@@ -45,7 +45,12 @@ namespace conexionAfexmysql
                         cmd.Parameters.AddWithValue("@pcodigo", video.codigo);
                         cmd.Parameters.AddWithValue("@ptitulo", video.titulo);
                         cmd.Parameters.AddWithValue("@pimagen", video.imagen);
-                        cmd.Parameters.AddWithValue("@pdescripcion", video.descripcion.Substring(0, 50));
+
+                        string sCada = video.descripcion;
+                        if (!String.IsNullOrEmpty(sCada))
+                            sCada = sCada.Substring(0, 50);
+
+                        cmd.Parameters.AddWithValue("@pdescripcion", sCada);
 
                         cmd.ExecuteNonQuery();
 
